@@ -18,7 +18,7 @@ class MarkSheet
 
         void displayMarkSheet()
         {
-            cout << "Marks in English: " << englishMark << "\nMarks in Math: " << mathsMark << "\nMarks in Science: " << scienceMark << endl;
+            cout << "\nMarks in English: " << englishMark << "\nMarks in Math: " << mathsMark << "\nMarks in Science: " << scienceMark << endl;
         }
 };
 
@@ -38,6 +38,11 @@ class Math
             return *this;
         }
 
+        operator MarkSheet()
+        {
+            return MarkSheet(0, this->mathsMark, 0);
+        }
+
         void displayMathsMark()
         {
             cout << "\nMarks in Math: " << mathsMark << endl;
@@ -49,9 +54,12 @@ int main()
     MarkSheet markSheet(85, 99, 97);
     markSheet.displayMarkSheet();
 
-    Math math(markSheet);
+    Math math = markSheet;
     math.displayMathsMark();
 
     math = markSheet;
     math.displayMathsMark();
+
+    markSheet = math;
+    markSheet.displayMarkSheet();
 }
